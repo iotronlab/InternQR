@@ -16,4 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::resource('interns','internController');
+
+Route::get('interns/getdetails/{intern}','internController@getDetails');
