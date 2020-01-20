@@ -13,6 +13,12 @@ export default {
       intern: null
     }
   },
+  props: {
+    searchid: {
+      type: String,
+      required: false
+    }
+  },
   mounted() {
     this.search()
   },
