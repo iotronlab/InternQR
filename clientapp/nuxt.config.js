@@ -8,7 +8,8 @@ export default {
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
-    meta: [{
+    meta: [
+      {
         charset: 'utf-8'
       },
       {
@@ -21,11 +22,13 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -47,7 +50,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/stylelint-module
 
-    '@nuxtjs/vuetify',
+    '@nuxtjs/vuetify'
   ],
   /*
    ** Nuxt.js modules
@@ -58,23 +61,37 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    'nuxt-webfontloader'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: 'http://127.0.0.1:8000/api'
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
    */
+  webfontloader: {
+    google: {
+      families: ['Poppins:300,400,500,600&display=swap'] //Loads Lato font with weights 400 and 700
+    }
+  },
+
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    defaultAssets: {
+      font: false,
+      icons: 'mdi'
+    },
+    treeShake: true,
     theme: {
       dark: true,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
+          primary: colors.blue.lighten2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
