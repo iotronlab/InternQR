@@ -1,92 +1,61 @@
 <template>
-  <v-layout
-    column
-    justify-center
-    align-center
-  >
-    <v-flex
-      xs12
-      sm8
-      md6
-    >
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+  <v-container fluid>
+    <v-row no-gutters>
+      <v-col>
+        <v-card class="mb-2">
+          <v-col>
+            <p class="subtitle-1 ">
+              For details of interns, search by UID or scan the QR on the
+              certificate.
+            </p>
+
+            <v-text-field
+              append-icon="mdi-magnify"
+              hide-details
+              label="Enter UID"
+              filled=""
+              shaped=""
+              v-model="searchid"
+            ></v-text-field>
+          </v-col>
+        </v-card>
+        <v-sheet>
+          <v-simple-table>
+            <thead>
+              <tr>
+                <td>{{ searchid }}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td>Anand</td>
+              </tr>
+            </tbody>
+          </v-simple-table>
+          <internDetails :searchid="searchid" />
+        </v-sheet>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import internDetails from '~/components/internDetails.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
 export default {
   components: {
-    Logo,
+    internDetails,
     VuetifyLogo
-  }
+  },
+  data() {
+    return {
+      searchid: null,
+
+      intern: null
+    }
+  },
+  methods: {}
 }
 </script>
