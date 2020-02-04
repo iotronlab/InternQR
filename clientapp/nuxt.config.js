@@ -1,5 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
-
+import axios from 'axios'
+let dynamicRoutes = async() => {
+  const response = await axios.get('https://cert.iotronlabs.com/api/public/api/interns');
+  return response.data.data.map(internId => `/${internId.id}`);
+}
 export default {
   mode: 'spa',
   /*
@@ -30,6 +34,9 @@ export default {
       }
     ]
   },
+    generate: {
+      routes: dynamicRoutes
+    },
   /*
    ** Customize the progress-bar color
    */
