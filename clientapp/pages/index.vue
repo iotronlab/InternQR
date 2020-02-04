@@ -4,56 +4,38 @@
       <v-col>
         <v-card class="mb-2">
           <v-col>
-            <p class="subtitle-1 ">
+            <p class="subtitle-1">
               For details of interns, search by UID or scan the QR on the
               certificate.
             </p>
-
-            <v-text-field
-              append-icon="mdi-magnify"
-              hide-details
-              label="Enter UID"
-              filled=""
-              shaped=""
-              v-model="searchid"
-            ></v-text-field>
+            <v-row class="align-center px-1">
+              <v-text-field
+                append-icon="mdi-magnify"
+                hide-details
+                label="Enter UID"
+                filled
+                shaped
+                v-model="searchid"
+              ></v-text-field>
+            </v-row>
+            <v-btn
+              class="mt-2"
+              style="background: linear-gradient(180deg, #efd5ff 0%, #515ada 100%);"
+              :to="{ name: 'intern-slug', params: { slug: searchid } }"
+            >search</v-btn>
           </v-col>
         </v-card>
-        <v-sheet>
-          <v-simple-table>
-            <thead>
-              <tr>
-                <td>{{ searchid }}</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Name</td>
-                <td>Anand</td>
-              </tr>
-            </tbody>
-          </v-simple-table>
-          <internDetails :searchid="searchid" />
-        </v-sheet>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import internDetails from '~/components/internDetails.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
 export default {
-  components: {
-    internDetails,
-    VuetifyLogo
-  },
+  components: {},
   data() {
     return {
-      searchid: null,
-
-      intern: null
+      searchid: null
     }
   },
   methods: {}

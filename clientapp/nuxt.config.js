@@ -1,9 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
 import axios from 'axios'
-let dynamicRoutes = async() => {
-  const response = await axios.get('https://cert.iotronlabs.com/api/public/api/interns');
-  return response.data.data.map(internId => `/${internId.id}`);
-}
+//let dynamicRoutes = async () => {
+// const response = await axios.get('https://cert.iotronlabs.com/api/public/api/interns');
+//return response.data.data.map(internId => `/${internId.uid}`);
+//}
 export default {
   mode: 'spa',
   /*
@@ -12,8 +12,7 @@ export default {
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
-    meta: [
-      {
+    meta: [{
         charset: 'utf-8'
       },
       {
@@ -26,17 +25,24 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [
-      {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/favicon.ico'
-      }
-    ]
+    link: [{
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico'
+    }]
   },
-    generate: {
-      routes: dynamicRoutes
-    },
+  generate: {
+    subFolders: false,
+    routes: async () => {
+      const response = await axios.get('https://cert.iotronlabs.com/api/public/api/interns');
+      return response.data.data.map((internId) => {
+        return {
+          route: `/intern/` + internId.uid,
+          payload: internId
+        }
+      });
+    }
+  },
   /*
    ** Customize the progress-bar color
    */
