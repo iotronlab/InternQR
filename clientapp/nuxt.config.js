@@ -32,7 +32,7 @@ export default {
     }]
   },
   generate: {
-    subFolders: false,
+   
     routes: async () => {
       const response = await axios.get('https://cert.iotronlabs.com/api/public/api/interns');
       return response.data.data.map((internId) => {
@@ -81,7 +81,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api'
+    baseURL: 'https://cert.iotronlabs.com/api/public/api'
   },
   /*
    ** vuetify module configuration

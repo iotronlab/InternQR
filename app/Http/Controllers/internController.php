@@ -19,11 +19,12 @@ class internController extends Controller
     public function show(intern $intern)
     {
         return new internResource($intern);
+          return QrCode::size(300)->generate('https://cert.iotronlabs.com/intern/'.$intern->uid);
     }
 
     public function getDetails(intern $intern)
     {
 
-        return QrCode::size(300)->generate('http://localhost:8000/api/interns/'.$intern->uid);
+        return QrCode::size(300)->generate('https://cert.iotronlabs.com/intern/'.$intern->uid);
     }
 }
