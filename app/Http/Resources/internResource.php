@@ -24,7 +24,7 @@ class internResource extends JsonResource
             'duration' => $this->duration,
             'project' => $this->projects,
             'tech' => $this->technology,
-           
+            'Qrcode' => $this->Qrcode,
         ];
     }
 }
